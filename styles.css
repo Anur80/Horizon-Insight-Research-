@@ -31,6 +31,11 @@
 html {
     scroll-behavior: smooth;
 }
+ul {
+    list-style: none;
+    padding: 0;
+}
+
 
 body {
     font-family: var(--font-main);
@@ -161,6 +166,7 @@ p {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    text-decoration: none;
 }
 
 .logo {
@@ -174,7 +180,7 @@ p {
 
 .nav-menu {
     display: flex;
-    list-style: none;
+    gap: 20px;
 }
 
 .nav-menu li {
@@ -255,8 +261,7 @@ p {
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-    margin-left: 420px;
-    margin-right: 420px;
+    /* Removed problematic margin-left/right that was causing issues on mobile */
 }
 
 .hero-content {
@@ -279,129 +284,258 @@ p {
     margin-right: auto;
 }
 
-/* ============================================
-   OVERVIEW SECTION (3 Columns)
-   ============================================ */
-.overview {
-    padding: 80px 0;
-    background-color: var(--color-accent);
-}
-
-.overview-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 40px;
-}
-
-.overview-card {
-    text-align: center;
-    padding: 40px 30px;
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.02);
-    transition: transform 0.3s ease;
-}
-
-.overview-card:hover {
-    transform: translateY(-5px);
-}
-
-.overview-icon {
-    font-size: 3rem;
-    margin-bottom: 20px;
-}
-
-.overview-card h3 {
-    margin-bottom: 15px;
-    color: var(--color-primary);
-}
-
-/* ============================================
-   ABOUT SECTION
-   ============================================ */
-.about-content {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 50px;
-}
-
-.about-item h3 {
-    margin-bottom: 20px;
-    color: var(--color-primary);
-}
-
-/* ============================================
-   SERVICES SECTION
-   ============================================ */
-.service-section {
-    margin-bottom: 80px;
-    padding-bottom: 60px;
-    border-bottom: 1px solid var(--color-border);
-}
-
-.service-section:last-child {
-    border-bottom: none;
-    margin-bottom: 0;
-    padding-bottom: 0;
-}
-
-.service-title {
-    color: var(--color-primary);
-    margin-bottom: 15px;
-}
-
-.service-intro {
-    font-size: 1.1rem;
-    margin-bottom: 25px;
-    max-width: 800px;
-}
-
-.service-list {
-    list-style-type: none;
-    padding-left: 0;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
-}
-
+/* Mobile Styles for Hero Section - keep the background image! */
 @media (max-width: 768px) {
-    .service-list {
-        grid-template-columns: 1fr;
+    .hero {
+        padding: 80px 20px;
+        /* Keep the background image on mobile - don't remove it */
+        background-position: center;
+        background-size: cover;
+    }
+
+    .hero-title {
+        font-size: 1.8rem;
+    }
+
+    .hero-text {
+        font-size: 1rem;
     }
 }
 
-.service-list li {
-    padding-left: 25px;
-    position: relative;
+
+/* About Section */
+.about-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 60px;
+}
+
+.about-text p {
+    font-size: 1.1rem;
+    line-height: 1.8;
     color: var(--color-text-light);
 }
 
-.service-list li::before {
-    content: "•";
-    color: var(--color-secondary);
-    font-size: 1.5rem;
-    position: absolute;
-    left: 0;
-    top: -5px;
+.about-image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-/* Impact Section */
-.impact-grid {
+
+.about-image {
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    object-fit: cover;
+}
+
+.about-item {
+    text-align: left;
+}
+
+@media (max-width: 768px) {
+    .about-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .about-item {
+        text-align: center;
+    }
+    
+    .about-text {
+        text-align: center;
+    }
+}
+
+/* Services Section */
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-top: 50px;
+}
+
+/* Service Card */
+.service-card {
+    background: #ffffff;
+    padding: 35px 25px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+.service-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+}
+
+.service-icon {
+    font-size: 40px;
+    margin-bottom: 20px;
+    color: #FE7F2D; 
+}
+
+.service-card h3 {
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+.service-card p {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.6;
+}
+
+/* Make bottom 2 centered */
+.services-grid .service-card:nth-child(4) {
+    grid-column: 1 / 2;
+}
+
+.services-grid .service-card:nth-child(5) {
+    grid-column: 2 / 3;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
+}
+/* ===============================
+   KEY FOCUS AREAS (ICON STYLE)
+================================= */
+
+.focus-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 30px;
+    margin-top: 50px;
 }
 
-.impact-card {
+.focus-card {
+    background: #ffffff;
+    padding: 35px 25px;
+    border-radius: 12px;
     text-align: center;
-    padding: 30px 20px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease;
 }
 
-.impact-card h3 {
-    font-size: 1.4rem;
-    margin-bottom: 15px;
-    color: var(--color-primary);
+.focus-card:hover {
+    transform: translateY(-6px);
 }
 
+.focus-icon {
+    font-size: 38px;
+    margin-bottom: 20px;
+    background: linear-gradient(2deg, #282ab3, #f7971e);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.focus-card h3 {
+    font-size: 17px;
+    margin-bottom: 12px;
+}
+
+.focus-card p {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.6;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .focus-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .focus-grid {
+        grid-template-columns: 1fr;
+    }
+}
+/* ===============================
+   RESEARCH CARDS WITH HOVER PDF
+================================= */
+
+.research-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    margin-top: 50px;
+}
+
+.research-card {
+    position: relative;
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 50px 20px;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.research-card:hover {
+    transform: translateY(-6px);
+}
+
+.research-content h3 {
+    font-size: 18px;
+    margin-bottom: 0;
+}
+
+/* Overlay */
+.research-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #261CC1; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: 12px;
+}
+
+.research-card:hover .research-overlay {
+    opacity: 1;
+}
+
+.research-overlay .btn-outline {
+    color: #fff;
+    border: 2px solid #fff;
+}
+
+.research-overlay .btn-outline:hover {
+    background: #fff;
+    color: #1800ad;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .research-grid {
+        grid-template-columns: 1fr;
+    }
+}
 
 /* Team Section */
 
@@ -698,5 +832,83 @@ p {
     /* Typography Adjustments */
     .hero-title {
         font-size: 2.2rem;
+    }
+}
+
+/* ============================================
+   RESPONSIVE STYLES
+   ============================================ */
+
+/* Navigation */
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-menu {
+    display: flex;
+    gap: 20px;
+}
+
+.mobile-menu-btn {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .nav-menu {
+        display: none;
+        flex-direction: column;
+        background-color: var(--color-bg);
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-menu.active {
+        display: flex;
+    }
+
+    .mobile-menu-btn {
+        display: block;
+    }
+}
+
+/* Hero Section */
+.hero {
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.hero-title {
+    font-size: 2.5rem;
+}
+
+.hero-text {
+    font-size: 1rem;
+}
+
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 2rem;
+    }
+
+    .hero-text {
+        font-size: 0.9rem;
+    }
+}
+
+/* Overview Section */
+.overview-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+@media (max-width: 768px) {
+    .overview-grid {
+        grid-template-columns: 1fr;
     }
 }
