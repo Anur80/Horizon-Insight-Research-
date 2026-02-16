@@ -51,6 +51,8 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
+    
+
     // Smooth scrolling for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
@@ -127,6 +129,40 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
     });
+
+    // Handle window resize to reset mobile menu state
+    window.addEventListener('resize', () => {
+        if (window.innerWidth > 768) {
+            navMenu.classList.remove('active');
+            mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            document.querySelectorAll('.dropdown').forEach(d => {
+                d.classList.remove('active');
+            });
+        }
+    });
+
+    // Ensure dropdown menus close when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('.nav') && window.innerWidth <= 768) {
+            navMenu.classList.remove('active');
+            document.querySelectorAll('.dropdown').forEach(d => {
+                d.classList.remove('active');
+            });
+        }
+    });
+
+    // Add hover effect for dropdowns on desktop
+    if (window.innerWidth > 768) {
+        dropdownToggles.forEach(toggle => {
+            const dropdown = toggle.parentElement;
+            dropdown.addEventListener('mouseenter', () => {
+                dropdown.classList.add('active');
+            });
+            dropdown.addEventListener('mouseleave', () => {
+                dropdown.classList.remove('active');
+            });
+        });
+    }
 
     // Team Carousel Functionality
     const teamGrid = document.querySelector('.team-grid');

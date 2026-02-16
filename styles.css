@@ -185,7 +185,17 @@ p {
 
 .nav-menu li {
     position: relative;
+
 }
+
+nav .btn {
+  background: linear-gradient(to right, #b34700, #7907bb);
+  padding: 10px 22px;
+  border-radius: 50px;
+  color: white;
+  font-weight: 600;
+}
+
 
 .nav-link, .dropdown-link {
     color: var(--color-primary);
@@ -199,6 +209,26 @@ p {
 .nav-link:hover, .dropdown-link:hover {
     color: var(--color-secondary);
 }
+
+nav a {
+  text-decoration: none;
+  color: white;
+  margin-right: 20px;
+}
+
+nav .btn {
+  background: #b34700;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-weight: bold;
+  transition: 0.3s ease;
+}
+
+nav .btn:hover {
+  background-color: #b34700; 
+    transform: translateY(-2px);
+}
+
 
 /* ============================================
    DROPDOWN MENU
@@ -537,132 +567,97 @@ p {
     }
 }
 
-/* Team Section */
-
-#team {
-    overflow: hidden;
-}
-
-.team-grid {
-    display: flex;
-    gap: 30px;
-    justify-content: center;
-    align-items: center;
-    padding: 20px 0;
-    overflow: hidden;
-}
-
-/* Card Style */
-.team-card {
-    position: relative;
-    flex: 0 0 250px; /* fixed width */
-    height: 340px;
-    border-radius: 28px; /* curved shape */
-    overflow: hidden;
-    transition: transform 0.4s ease, opacity 0.4s ease;
-    cursor: pointer;
-}
-
-/* Slight side fade effect */
-.team-card:first-child,
-.team-card:last-child {
-    opacity: 0.4;
-    transform: scale(0.9);
-}
-
-/* Image Area */
-.team-img {
-    width: 100%;
-    height: 100%;
-    background-color: var(--color-accent);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 4rem;
-    color: var(--color-primary);
-    transition: transform 0.5s ease;
-}
-
-/* Hover Zoom */
-.team-card:hover {
-    transform: scale(1.08);
-    z-index: 5;
-}
-
-.team-card:hover .team-img {
-    transform: scale(1.1);
-}
-
-/* Gradient Overlay */
-.team-card::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-        to top,
-        rgba(0, 0, 0, 0.7),
-        rgba(0, 0, 0, 0.3),
-        rgba(0, 0, 0, 0)
-    );
-    opacity: 0;
-    transition: opacity 0.4s ease;
-}
-
-.team-card:hover::after {
-    opacity: 1;
-}
-
-/* Name & Role */
-.team-card h3,
-.team-card .team-role {
-    position: absolute;
-    left: 0;
-    right: 0;
+/* Results Section */
+.results-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
     text-align: center;
-    color: #ffffff;
-    z-index: 6;
-    opacity: 0;
-    transform: translateY(15px);
-    transition: all 0.4s ease;
 }
 
-.team-card h3 {
-    bottom: 65px;
-    font-size: 1.2rem;
-    font-weight: 400;
-}
-
-.team-card .team-role {
-    bottom: 40px;
-    font-size: 0.9rem;
+.result-item h3 {
+    font-size: 3rem;
     font-weight: 300;
-    color: #e5e5e5;
+    color: var(--color-primary);
+    margin-bottom: 10px;
 }
 
-/* Show text on hover */
-.team-card:hover h3,
-.team-card:hover .team-role {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* Hide bio for this design */
-.team-card .team-bio {
-    display: none;
+.result-item p {
+    font-size: 1rem;
+    color: var(--color-text-light);
 }
 
 /* Responsive */
 @media (max-width: 1024px) {
-    .team-grid {
-        justify-content: flex-start;
-        overflow-x: auto;
-        padding-bottom: 20px;
-    }
-
-    .team-card {
-        flex: 0 0 220px;
+    .results-grid {
+        grid-template-columns: repeat(2, 1fr);
     }
 }
+
+@media (max-width: 768px) {
+    .results-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* Team Section */
+#team {
+    padding: 80px 0;
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+    margin-top: 50px;
+}
+
+.team-card {
+    background: #ffffff;
+    border-radius: 20px;
+    overflow: hidden;
+    text-align: center;
+    padding-bottom: 25px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.team-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+}
+
+.team-img {
+    width: 100%;
+    height: 220px;
+    background-color: #e6e6e6; /* light gray placeholder */
+}
+
+.team-card h3 {
+    margin-top: 20px;
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: var(--color-primary);
+}
+
+.team-role {
+    font-size: 0.9rem;
+    color: var(--color-text-light);
+    font-weight: 300;
+}
+
+@media (max-width: 1024px) {
+    .team-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .team-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
 
 /* ============================================
    CONTACT SECTION
@@ -736,22 +731,85 @@ p {
     text-align: center;
     color: #999;
 }
-
-/* ============================================
-   FOOTER
-   ============================================ */
+/* Footer */
 .footer {
-    background-color: var(--color-primary);
-    color: #ecf0f1;
-    padding: 40px 0;
+    background-color: #0f1c2e; /* soft navy */
+    color: #ccc;
+    padding: 80px 0 30px;
+}
+
+.footer-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 60px;
+}
+
+.footer-logo {
+    font-size: 1.8rem;
+    font-weight: 300;
+    color: #fff;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+}
+
+.footer-text {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    color: #aaa;
+}
+
+.footer-col h4 {
+    font-weight: 400;
+    margin-bottom: 20px;
+    color: #fff;
+    font-size: 1rem;
+}
+
+.footer-col ul {
+    list-style: none;
+}
+
+.footer-col ul li {
+    margin-bottom: 12px;
+}
+
+.footer-col ul li a {
+    color: #aaa;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: 0.3s ease;
+}
+
+.footer-col ul li a:hover {
+    color: #f4a261; 
+}
+
+.social-icons a {
+    display: inline-block;
+    margin-right: 12px;
+    color: #aaa;
+    font-size: 1rem;
+    transition: 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: #f4a261;
+}
+
+.location-title {
+    margin-top: 30px;
+}
+
+.footer-bottom {
     text-align: center;
     margin-top: 60px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    font-size: 0.85rem;
+    color: #888;
 }
 
-.footer p {
-    color: #ecf0f1;
-    margin-bottom: 10px;
-}
 
 /* ============================================
    RESPONSIVE DESIGN
